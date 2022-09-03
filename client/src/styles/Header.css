@@ -1,0 +1,27 @@
+@media screen and (max-width: 720px) {
+
+}
+
+@media screen and (min-width: 720px) {   
+    .header-items {
+        display: flex;
+    }
+}
+
+
+.header-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1F1A3C;
+}
+
+.header-items {
+    align-items: center;
+    margin-left: auto;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.header-item {
+    margin-right: 1rem;
+}

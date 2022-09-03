@@ -1,0 +1,8 @@
+.calendar-wrapper {
+    background-color: #F2F3F7;
+    min-height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}

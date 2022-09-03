@@ -1,0 +1,15 @@
+@media (max-width: 1024px) {
+    .header-text {
+        font-size: 1.5rem;
+        color: black;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .header-text {
+        font-size: 2.5rem;
+        color: pink;
+    }
+  }
+
+

@@ -1,0 +1,48 @@
+.slots-content {
+    display: flex;
+}
+
+.slots-content-w50{
+    width: 50%;
+}
+
+.slots-btn {
+    margin-top: 1rem;
+    cursor: pointer;
+    padding: 1rem;
+    border: 2px solid #999999;
+    border-radius: 4px;
+    background-color: #FBFBFD;
+}
+
+.slots-selected {
+    border: 2px solid rgb(0,105,255);
+}
+
+.default-schedule-wrapper {
+    margin-top: 2rem;
+    border: 1px solid #999999;
+    background-color: #FFF;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+}
+
+.default-schedule-left {
+    width: 40%;
+}
+
+.default-schedule-week {
+    margin-top: 0.5rem;
+}
+
+.default-schedule-weekday {
+    color: black;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-right: 4rem;
+}
+
+.default-schedule-time {
+    color: black;
+    font-size: 1.2rem;
+}

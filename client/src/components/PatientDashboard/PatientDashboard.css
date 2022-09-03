@@ -1,0 +1,7 @@
+.patient-dashboard-wrapper {
+    flex: 1;
+    padding: 0 2rem;
+    min-height: 100vh;
+    max-height: 100vh;
+    background-color: #F2F3F7;
+}

@@ -1,0 +1,10 @@
+.bookModal-wrapper {
+    background-color: black;
+    display: fixed;
+}
+
+.selected-slot {
+    background-color: #0060FE;
+    color: #fff;
+    border: none;
+}

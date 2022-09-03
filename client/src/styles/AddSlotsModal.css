@@ -1,0 +1,18 @@
+/* .slots {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.slot {
+    border-radius: 0.5rem;
+    border: 1px solid black;
+    padding: 0.5rem;
+    margin: 0.3rem;
+}
+
+.active-slot {
+    background-color: #0060FE;
+    color: #fff;
+    border: none;
+} */

@@ -1,0 +1,84 @@
+/* Media Query for low resolution  Tablets, Ipads */
+@media (min-width: 481px) and (max-width: 1024px) {
+
+}
+      
+/* Media Query for Large screens */
+@media (min-width: 1024px) {
+
+}
+
+
+.doctors-wrapper {
+    flex: 1;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: #f5f5f5;
+}
+
+.doctors-content {
+    display: flex;
+    margin-top: 2rem;
+    padding: 0 2rem;
+}
+
+.doctors-search {
+    width: 30%;
+    height: fit-content;
+    position: sticky;
+    top: 5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-right: auto;
+    background-color: #fff;
+}
+
+.doctors-list {
+    width: 68%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.5rem;
+}
+
+.doctors-search-header {
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 0.5rem;
+}
+
+.doctors-search-container {
+    padding: 0.5rem 1.5rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.doctors-search-inputs {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+.doctors-search-input {
+    color: #666;
+    font-weight: 400;
+}
+
+.doctors-search-btn {
+    background-color: #00a8ff;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
