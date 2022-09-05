@@ -14,6 +14,8 @@ import CalendarPage from './pages/CalendarPage';
 import Login from './pages/Login';
 // Components
 
+import 'font-awesome/css/font-awesome.min.css';
+
 //import PatientDashboard from './components/PatientDashboard/PatientDashboard';
 import AppointmentsPage from './pages/AppointmentsPage';
 

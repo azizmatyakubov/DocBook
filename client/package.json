@@ -1,9 +1,10 @@
 {
   "proxy": "http://localhost:3001",
-  "name": "e-hospital-interface",
+  "name": "DocBook",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@fullcalendar/daygrid": "^5.11.0",
     "@fullcalendar/interaction": "^5.11.0",
     "@fullcalendar/react": "^5.11.1",

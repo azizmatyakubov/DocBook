@@ -3,8 +3,11 @@ import { useSelector } from "react-redux";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
-import { Calendar, momentLocalizer } from "react-big-calendar";
+
+import { Calendar, momentLocalizer } from "react-big-calendar"
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import Sidebar from "../components/Sidebar";
+import { Container } from "react-bootstrap";
 import "../styles/Calendar.css";
 
 const localizer = momentLocalizer(moment);
@@ -70,14 +73,15 @@ const CalendarPage = () => {
       border: "none",
       outline: "none",
       boxShadow: "0px 0px 10px #000",
-      zIndex: "10",
+      zIndex: "10"
     },
   };
 
   return (
     <>
-      <div className="calendar-wrapper">
-       <div className="component-body">
+      <div className="component">
+      <Sidebar />
+       <Container className="mt-3">
           <Calendar
             localizer={localizer}
             events={confirmedAppointments}
@@ -93,7 +97,7 @@ const CalendarPage = () => {
               showCalendarModal();
             }}
           />
-       </div>
+       </Container>
       </div>
 
       <Modal

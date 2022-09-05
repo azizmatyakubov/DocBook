@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Container, Row, Col } from 'react-bootstrap'
 import AppointmentList from '../components/Dashboard/AppointmentList'
@@ -9,8 +9,8 @@ import Sidebar from '../components/Sidebar'
 
 export default function Dashboard() {
   const user = useSelector(state => state.user)
-  const [confirmedAppointments, setConfirmedAppointments] = React.useState([])
-  const [pendingAppointments, setAppointmentRequests] = React.useState([])
+  const [confirmedAppointments, setConfirmedAppointments] = useState([])
+  const [pendingAppointments, setAppointmentRequests] = useState([])
 
   const getAppointmentsByDoctor = async () => {
     try {
@@ -48,10 +48,10 @@ export default function Dashboard() {
 
 
   return (
-    <div className='dashboard-wrapper'>
+    <div className='component'>
       <Sidebar />
-      <div>
-          <div className='overview-header'>
+      <Container>
+          <div >
               <Container fluid>
                 <Row>
                   <Col xs={6} md={3}><InfoSquare icon="people" text="Patients" number="664" /></Col>
@@ -72,7 +72,8 @@ export default function Dashboard() {
                 </Row>
               </Container>
           </div>
+          </Container>
         </div>
-    </div>
+      
   )
 }

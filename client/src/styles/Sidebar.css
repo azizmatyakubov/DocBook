@@ -4,9 +4,15 @@
     padding: 0.7rem;
     height: auto;
     position: relative;
-    border-bottom: 1px solid #98a1ab;
+    box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.1);
     margin-bottom: 1rem;
+    background-color: #fff;
   }
+
+  .sidebar-icon {
+    margin-right: 0.5rem;
+}
+
   
 }
 
@@ -40,14 +46,10 @@
     .sidebar-wrapper {
         display: flex;
         padding: 5px 10px 10px;
-        position: fixed;
-        top: 0;
         width: 5rem;
         z-index: 1040;
         border-right: 1px solid #dcdfe3
     }
-
-
 
     .sidebar-image-container {
         width: 1rem;
@@ -89,25 +91,19 @@
     align-items: center;
     width: 100%;
     padding: 0.5rem;
-    color: #373B7B;
+    margin: 0.5rem 0;
     border-radius: 0.3rem;
     margin-top: 0.5rem;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: 600;
 }
 
 
 .sidebar-menu-item:hover, .sidebar-active {
     background-color: #f3f3f4;
+    color: rgb(192, 0, 0);
 }
-
-.sidebar-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    color: #627282;
-}
-
 
 
 .sidebar-footer {
