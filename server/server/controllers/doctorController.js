@@ -68,7 +68,6 @@ export const getAllDoctors = async (req, res, next) => {
         if (!doctors) return next(createHttpError(404, "Doctors not found"));
 
         res.status(200).json({
-            message: "All doctors",
             doctors
         });
     } catch (error) {
