@@ -9,8 +9,6 @@ import { IoMdExit } from "react-icons/io";
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 import { faUserMd } from "@fortawesome/free-solid-svg-icons"; 
-
-
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 

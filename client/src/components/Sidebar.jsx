@@ -1,6 +1,4 @@
 import { useState } from "react";
-import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
 import { CgMenu } from "react-icons/cg";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import SidebarDoctor from "./SidebarDoctor";
