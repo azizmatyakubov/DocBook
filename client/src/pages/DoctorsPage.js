@@ -3,6 +3,7 @@ import DoctorCard from "../components/Doctors/DoctorCard";
 import '../styles/Doctors.css'
 import { useSelector } from "react-redux";
 import Sidebar from "../components/Sidebar";
+import { Container, Row, Col } from "react-bootstrap";
 
 const DoctorsPage = () => {
   const user = useSelector((state) => state.user);
@@ -34,8 +35,9 @@ const DoctorsPage = () => {
   return (
 <div className="component">
       <Sidebar />
-      <div className="doctors-wrapper">
-        <div className="doctors-content">
+      <Container>
+        <Row>
+          <Col xs={12} md={3}>
           <div className="doctors-search">
             <div className="doctors-search-header">Search Filter</div>
             <div className="doctors-search-container">
@@ -74,14 +76,17 @@ const DoctorsPage = () => {
               <button className="doctors-search-btn">Search</button>
             </div>
           </div>
+          </Col>
+          <Col xs={12} md={9}>
           <div className="doctors-list">
             {doctors &&
-              doctors.map((doctor) => {
-                return <DoctorCard doctor={doctor} />;
-              })}
+              doctors.map((doctor) => <DoctorCard doctor={doctor} />
+            )}
           </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+   
+      </Container>
 </div>
   );
 };
