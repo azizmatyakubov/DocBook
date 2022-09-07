@@ -9,11 +9,6 @@ import "./DoctorCard.css";
 const DoctorCard = ({ doctor }) => {
   const navigate = useNavigate();
 
-  const bookDoctor = (event) => {
-    event.preventDefault();
-    navigate(`/book/${doctor.id}`);
-  };
-
   return (
     <Container className="doctor-card">
       <Row className="flex">

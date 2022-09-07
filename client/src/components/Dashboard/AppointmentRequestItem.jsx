@@ -29,7 +29,7 @@ export default function AppointmentRequestItem({
       let data = await res.json();
 
       if (res.status === 200) {
-        console.log(data.data.appointment);
+        console.log(data.appointment);
         getAppointmentsByDoctor();
       } else {
         console.log("response error");
@@ -58,7 +58,7 @@ export default function AppointmentRequestItem({
       let data = await res.json();
 
       if (res.status === 200) {
-        console.log(data.data.appointment);
+        console.log(data.appointment);
         getAppointmentsByDoctor(doctorId);
       } else {
         console.log("response error");
@@ -71,7 +71,7 @@ export default function AppointmentRequestItem({
   return (
     <div className="overview-appointment-list-wrapper ">
       <div className="overview-patient-avatar">
-        <img src={pendingAppointments.patient.image} alt="" srcset="" />
+        <img src={pendingAppointments.patient.image} alt="" />
       </div>
       <div className="overview-patient-info">
         <Link to={"/"} style={{ textDecoration: "none" }}>

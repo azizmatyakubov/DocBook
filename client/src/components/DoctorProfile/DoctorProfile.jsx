@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 
 const DoctorProfile = () => {
   const user = useSelector((state) => state.user);
+  const token = localStorage.getItem("token");
   const [doctor, setDoctor] = useState({});
   const param = useParams();
 
@@ -28,20 +29,20 @@ const DoctorProfile = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
       const data = await res.json();
-      setDoctor(data.data.doctor);
+      setDoctor(data.doctor);
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div className="profileDoctor-wrapper">
-      <Container>
+    <div className="flex">
+      <Container className="mt-3">
         <Row>
           <Col md={7}>
             <DoctorInfo doctor={doctor} />

@@ -6,7 +6,7 @@ export default function AppointmentListItem({ appointment }) {
   return (
     <div className="overview-appointment-list-wrapper ">
       <div className="overview-patient-avatar">
-        <img src={appointment.patient.image} alt="" srcset="" />
+        <img src={appointment.patient.image} alt="" />
       </div>
       <div className="overview-patient-info">
         <div className="overview-patient-name">

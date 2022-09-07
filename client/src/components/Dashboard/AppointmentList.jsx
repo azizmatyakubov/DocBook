@@ -7,7 +7,10 @@ export default function AppointmentList({ confirmedAppointments }) {
     <AppointmentListContainer>
       {confirmedAppointments &&
         confirmedAppointments.map((appointment) => (
-          <AppointmentListItem appointment={appointment} />
+          <AppointmentListItem
+            key={appointment._id}
+            appointment={appointment}
+          />
         ))}
     </AppointmentListContainer>
   );

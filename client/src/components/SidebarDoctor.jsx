@@ -1,25 +1,23 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "../styles/Sidebar.css";
 
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 // icons
 import { IoMdExit } from "react-icons/io";
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
-import { faUserMd } from "@fortawesome/free-solid-svg-icons"; 
+import { faUserMd } from "@fortawesome/free-solid-svg-icons";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
-
-
-
 
 import SidebarItem from "./SidebarItem";
 
 const SidebarDoctor = () => {
   const [isActive, setIsActive] = useState("Dashboard");
-  const user = useSelector((state) => state.user);
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const makeActive = (text) => {
@@ -29,8 +27,16 @@ const SidebarDoctor = () => {
 
   const logout = () => {
     localStorage.removeItem("user");
+    // clear redux store
+    dispatch({ type: "LOGOUT" });
     navigate("/login");
   };
+
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Simple tooltip
+    </Tooltip>
+  );
 
   return (
     <div className="sidebar-wrapper">
@@ -42,15 +48,43 @@ const SidebarDoctor = () => {
       </div>
 
       <nav className="sidebar-menu">
-        
-        
-        <SidebarItem isActive={isActive} makeActive={makeActive} icon={faChartLine} text="Dashboard" />
-        <SidebarItem isActive={isActive} makeActive={makeActive} icon={faCalendar} text="Calendar" />
-        <SidebarItem isActive={isActive} makeActive={makeActive} icon={faUserMd} text="Doctors" />
-        <SidebarItem isActive={isActive} makeActive={makeActive} icon={faCalendar} text="Appointments" />
-        <SidebarItem isActive={isActive} makeActive={makeActive} icon={faCirclePlus} text="Slots"/>
-        <SidebarItem isActive={isActive} makeActive={makeActive} icon={faCalendar} text="Profil"/>
+        <SidebarItem
+          isActive={isActive}
+          makeActive={makeActive}
+          icon={faChartLine}
+          text="Dashboard"
+        />
 
+        <SidebarItem
+          isActive={isActive}
+          makeActive={makeActive}
+          icon={faCalendar}
+          text="Calendar"
+        />
+        <SidebarItem
+          isActive={isActive}
+          makeActive={makeActive}
+          icon={faUserMd}
+          text="Doctors"
+        />
+        <SidebarItem
+          isActive={isActive}
+          makeActive={makeActive}
+          icon={faCalendar}
+          text="Appointments"
+        />
+        <SidebarItem
+          isActive={isActive}
+          makeActive={makeActive}
+          icon={faCirclePlus}
+          text="Slots"
+        />
+        <SidebarItem
+          isActive={isActive}
+          makeActive={makeActive}
+          icon={faCalendar}
+          text="Profil"
+        />
       </nav>
 
       <div>

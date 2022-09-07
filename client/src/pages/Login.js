@@ -33,6 +33,7 @@ const Login = () => {
       const data = await res.json();
       if (res.ok) {
         dispatch(saveUser(data.id));
+        localStorage.setItem("token", data.token);
         navigate("/dashboard");
       }
     } catch (error) {
