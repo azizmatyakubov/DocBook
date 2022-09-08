@@ -13,23 +13,32 @@ const AppointmentsPage = () => {
     const token = localStorage.getItem('token')
     const [appointments, setAppointments] = useState([])
 
-   const { response, error, loading } = useFetch(`${process.env.REACT_APP_API_URL}/appointments/doctor/${user.user}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-    })
 
     useEffect(() => {
-      if (response) {
-        setAppointments(response.appointments)
+        getAppointmentsByDoctor(user.user)
+    }, [])
+
+    const getAppointmentsByDoctor = async (id) => {
+        try {
+          let res = await fetch(`${process.env.REACT_APP_API_URL}/appointments/doctor/${id}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
+            },
+          })
+      
+          let data = await res.json()
+      
+          if (res.status === 200) {
+            setAppointments(data.appointments)
+          } else {
+            console.log("response error");
+          }  
+        } catch (error) {
+          console.log(error)
+        }
       }
-    }, [response])
-
-
-
-    
 
     const cancelAppointment = async (id) => {
         try {
@@ -45,7 +54,7 @@ const AppointmentsPage = () => {
             })
 
             if (res.status === 200) {
-                //getAppointmentsByDoctor()
+                getAppointmentsByDoctor(user.user)
             } else {
                 console.log("response error");
             }
@@ -64,8 +73,8 @@ const AppointmentsPage = () => {
                 },
             })
 
-            if (res.status === 200) {
-               // getAppointmentsByDoctor()
+            if (res.status === 204) {
+                getAppointmentsByDoctor(user.user)
             } else {
                 console.log("response error");
             }
