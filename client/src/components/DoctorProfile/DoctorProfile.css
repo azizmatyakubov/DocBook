@@ -15,19 +15,18 @@
 
 
 /* Doctor Info Component  */
-.doctor-info-wrapper {
+.doctor-info {
     display: flex;
     width: 100%;
     border-radius: 4px;
-    background-color: #FBFBFD;
+    background-color: #EEF4FD;
+    color: #012C6D;
+    font-weight: 600;
     overflow: hidden;
 }
 
 .doctor-info-image {
-    display: flex;
-    flex-direction: column;
-    padding: 1.5rem;
-    width: 50%;
+    width: 100%;
 }
 .doctor-info-image > img {
     width: 100%;
@@ -38,12 +37,12 @@
 .doctor-info-content {
     display: flex;
     flex-direction: column;
-    padding: 1.5rem;
-    width: 50%;
+   
 }
 
 .doctor-info-content > h3 {
     margin-top: 1rem;
+    font-weight: 600;
 }
 
 .doctor-rating {

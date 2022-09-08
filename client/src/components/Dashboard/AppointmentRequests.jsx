@@ -11,6 +11,7 @@ export default function AppointmentRequests({
       {pendingAppointments &&
         pendingAppointments.map((appointment) => (
           <AppointmentRequestItem
+            key={appointment._id}
             pendingAppointments={appointment}
             getAppointmentsByDoctor={getAppointmentsByDoctor}
           />

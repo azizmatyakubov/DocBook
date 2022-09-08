@@ -1,32 +1,37 @@
 import React, { useState, useEffect } from 'react'
+import { Container } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import Appointments from '../components/Appointments/Appointments'
+import Sidebar from '../components/Sidebar'
+
+import useFetch from '../hooks/useFetch'
+
 import '../styles/AppointmentsPage.css'
 
 const AppointmentsPage = () => {
     const user = useSelector((state) => state.user)
+    const token = localStorage.getItem('token')
     const [appointments, setAppointments] = useState([])
 
 
     useEffect(() => {
-        getAppointmentsByDoctor()
+        getAppointmentsByDoctor(user.user)
     }, [])
 
-
-    const getAppointmentsByDoctor = async () => {
+    const getAppointmentsByDoctor = async (id) => {
         try {
-          let res = await fetch(`${process.env.REACT_APP_API_URL}/appointments/doctor/${user.id}`, {
+          let res = await fetch(`${process.env.REACT_APP_API_URL}/appointments/doctor/${id}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${user.token}`,
+              'Authorization': `Bearer ${token}`,
             },
           })
       
           let data = await res.json()
       
           if (res.status === 200) {
-            setAppointments(data.data.appointments)
+            setAppointments(data.appointments)
           } else {
             console.log("response error");
           }  
@@ -41,7 +46,7 @@ const AppointmentsPage = () => {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${user.token}`,
+                    'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify({
                     status: 'cancelled'
@@ -49,7 +54,7 @@ const AppointmentsPage = () => {
             })
 
             if (res.status === 200) {
-                getAppointmentsByDoctor()
+                getAppointmentsByDoctor(user.user)
             } else {
                 console.log("response error");
             }
@@ -64,12 +69,12 @@ const AppointmentsPage = () => {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${user.token}`,
+                    'Authorization': `Bearer ${token}`,
                 },
             })
 
-            if (res.status === 200) {
-                getAppointmentsByDoctor()
+            if (res.status === 204) {
+                getAppointmentsByDoctor(user.user)
             } else {
                 console.log("response error");
             }
@@ -80,10 +85,11 @@ const AppointmentsPage = () => {
 
 
   return (
-    <div className='appointmentsPage-wrapper'>
-          <div className='component-body'>
+    <div className='component'>
+      <Sidebar />
+        <Container className="mt-3">
             <Appointments appointments={appointments} cancelAppointment={cancelAppointment} deleteAppointment={deleteAppointment} />
-          </div>
+        </Container>
     </div>
   )
 }

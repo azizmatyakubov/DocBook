@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+
 const SidebarItem = ({ isActive, makeActive, icon, text }) => {
   return (
     <div

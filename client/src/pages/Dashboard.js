@@ -8,29 +8,30 @@ import '../styles/Dashboard.css'
 import Sidebar from '../components/Sidebar'
 
 export default function Dashboard() {
-  const user = useSelector(state => state.user)
+  const user = useSelector((state) => state.user)
+  const token = localStorage.getItem('token')
   const [confirmedAppointments, setConfirmedAppointments] = useState([])
   const [pendingAppointments, setAppointmentRequests] = useState([])
 
   const getAppointmentsByDoctor = async () => {
     try {
-      let res = await fetch(`${process.env.REACT_APP_API_URL}/appointments/doctor/${user.id}`, {
+      let res = await fetch(`${process.env.REACT_APP_API_URL}/appointments/doctor/${user.user}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${user.token}`,
+          'Authorization': `Bearer ${token}`,
         },
       })
   
       let data = await res.json()
   
       if (res.status === 200) {
-      const confirmedAppointments = data.data.appointments.filter(
+      const confirmedAppointments = data.appointments.filter(
         (appointment) => appointment.status === "confirmed"
       )
       setConfirmedAppointments(confirmedAppointments)
       // filter out pending appointments
-      const pendingAppointments = data.data.appointments.filter(
+      const pendingAppointments = data.appointments.filter(
         (appointment) => appointment.status === "pending"
       )
       setAppointmentRequests(pendingAppointments)
@@ -43,7 +44,7 @@ export default function Dashboard() {
   }
   
   useEffect( ()  => {
-   // getAppointmentsByDoctor(user.id)
+   getAppointmentsByDoctor(user.id)
   }, []);
 
 
