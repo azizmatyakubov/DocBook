@@ -69,16 +69,16 @@ const DefaultSchedule = () => {
           <input type="checkbox" className="schedule-checkbox" />
           <span className="default-schedule-weekday">MONDAY</span>
         </div>
-        <div>
+        <div className="schedule-inputs">
           <input
             type="text"
-            className="default-schedule-time"
+            className="default-schedule-input"
             value={"09:00"}
             disabled={true}
           />
           <input
             type="text"
-            className="default-schedule-time"
+            className="default-schedule-input"
             value={"17:00"}
             disabled={true}
           />
@@ -89,16 +89,16 @@ const DefaultSchedule = () => {
           <input type="checkbox" className="schedule-checkbox" />
           <span className="default-schedule-weekday">TUESDAY</span>
         </div>
-        <div>
+        <div className="schedule-inputs">
           <input
             type="text"
-            className="default-schedule-time"
+            className="default-schedule-input"
             value={"09:00"}
             disabled={true}
           />
           <input
             type="text"
-            className="default-schedule-time"
+            className="default-schedule-input"
             value={"17:00"}
             disabled={true}
           />
@@ -109,16 +109,16 @@ const DefaultSchedule = () => {
           <input type="checkbox" className="schedule-checkbox" />
           <span className="default-schedule-weekday">WEDNESDAY</span>
         </div>
-        <div>
+        <div className="schedule-inputs">
           <input
             type="text"
-            className="default-schedule-time"
+            className="default-schedule-input"
             value={"09:00"}
             disabled={true}
           />
           <input
             type="text"
-            className="default-schedule-time"
+            className="default-schedule-input"
             value={"17:00"}
             disabled={true}
           />
@@ -129,16 +129,16 @@ const DefaultSchedule = () => {
           <input type="checkbox" className="schedule-checkbox" />
           <span className="default-schedule-weekday">THURSDAY</span>
         </div>
-        <div>
+        <div className="schedule-inputs">
           <input
             type="text"
-            className="default-schedule-time"
+            className="default-schedule-input"
             value={"09:00"}
             disabled={true}
           />
           <input
             type="text"
-            className="default-schedule-time"
+            className="default-schedule-input"
             value={"17:00"}
             disabled={true}
           />
@@ -149,16 +149,16 @@ const DefaultSchedule = () => {
           <input type="checkbox" className="schedule-checkbox" />
           <span className="default-schedule-weekday">FRIDAY</span>
         </div>
-        <div>
+        <div className="schedule-inputs">
           <input
             type="text"
-            className="default-schedule-time"
+            className="default-schedule-input"
             value={"09:00"}
             disabled={true}
           />
           <input
             type="text"
-            className="default-schedule-time"
+            className="default-schedule-input"
             value={"17:00"}
             disabled={true}
           />

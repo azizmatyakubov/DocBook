@@ -4,8 +4,6 @@ import { useSelector } from 'react-redux'
 import Appointments from '../components/Appointments/Appointments'
 import Sidebar from '../components/Sidebar'
 
-import useFetch from '../hooks/useFetch'
-
 import '../styles/AppointmentsPage.css'
 
 const AppointmentsPage = () => {

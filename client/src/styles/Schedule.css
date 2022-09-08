@@ -1,3 +1,29 @@
+@media only screen and (max-width: 600px) {
+    .default-schedule-input {
+        width: 4rem;
+       }
+    .schedule-inputs {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+    
+}
+  
+@media only screen and (min-width: 601px) {
+    .default-schedule-input {
+        width: 5rem;
+    }
+
+    .default-schedule-input {
+        margin-right: 1rem;
+    }
+}
+  
+
+
+
 .default-schedule-wrapper {
     display: flex;
     flex-direction: column;
@@ -5,7 +31,7 @@
     width: 100%;
     height: 100%;
     background-color: #fafafa;
-    padding: 1rem;
+    
 }
 
 .schedule-checkbox {
@@ -18,14 +44,13 @@
     padding-top: 1rem;
 }
 
-.default-schedule-time {
-    
-    padding: 0.5rem;
+.default-schedule-input {
+    text-align: center;
+    padding: 0.5rem 0;
     font-size: 1.2rem;
     border-radius: 8px;
-    width: 4rem;
-    margin-right: 1rem;
     border: 1px solid #373B7B;
+    color: black; 
 }
 
 .schedule-week {
