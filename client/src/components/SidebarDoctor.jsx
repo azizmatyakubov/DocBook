@@ -42,9 +42,13 @@ const SidebarDoctor = () => {
     <div className="sidebar-wrapper">
       <div className="sidebar-header">
         <div className="sidebar-logo-container">
-          {/* <img className="sidebar-image" src={user.image} alt="sidebar" /> */}
+          <img
+            className="sidebar-image"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWC6ivrjVkH2R1K4pEL-_nh53cZxLhDmyKkw&usqp=CAU"
+            alt="sidebar"
+          />
         </div>
-        <h1 className="sidebar-header-text">Hello My</h1>
+        <h1 className="sidebar-header-text">TOM HOLLAND</h1>
       </div>
 
       <nav className="sidebar-menu">

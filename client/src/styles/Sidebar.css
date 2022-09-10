@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 /* Media Query for smartphones */
 @media only screen and (max-width: 600px) {
   .sidebar {
@@ -12,8 +14,6 @@
   .sidebar-icon {
     margin-right: 0.5rem;
 }
-
-  
 }
 
 
@@ -24,13 +24,6 @@
         height: 2rem;
     }
 
-    .sidebar-header-text {
-        display: none;
-    }
-
-    .sidebar-text {
-        display: none;
-    }
 
     .sidebar {
         display: none;
@@ -54,10 +47,7 @@
         background-color: black;
     }
 
-    .sidebar-text {
-        display: none;
-    }
-
+  
 }
 
 .sidebar-wrapper {
@@ -65,10 +55,20 @@
     position: sticky;
     top: 0;
     flex-direction: column;
-    align-items: center;
     max-width: 300px;
-    background-color: #fff;
+    width: 250px;
+    background-color: #f7f7f7;
     height: 100vh;
+    
+}
+
+.sidebar-logo-container {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 2rem;
+    margin: auto;
+    margin-top: 1rem;
+    overflow: hidden;
 }
 
 
@@ -82,7 +82,10 @@
     margin: 0.5em auto;
     text-transform: uppercase;
     text-align: center;
-    font-size: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #011e2e;
+    font-family: 'Poppins', sans-serif;
 }
 
 .sidebar-menu-item {
@@ -96,13 +99,35 @@
     cursor: pointer;
     font-size: 1.3rem;
     font-weight: 600;
+    color: #003049;
+}
+
+
+.sidebar-icon {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+  
+}
+
+.sidebar-icon:hover {
+    color: #003049;
 }
 
 
 .sidebar-menu-item:hover, .sidebar-active {
-    background-color: #f3f3f4;
-    color: rgb(192, 0, 0);
+    background-color: #8000FF;
+    color: #fff;
+    font-weight: 400;
 }
+
+
+.sidebar-text {
+    font-family: 'Poppins';
+    margin-left: 0.5rem;
+    font-size: 1rem;
+
+}
+
 
 
 .sidebar-footer {

@@ -1,8 +1,10 @@
 import React from "react";
 import moment from "moment";
 import "../styles/Schedule.css";
+import { useSelector } from "react-redux";
 
 const DefaultSchedule = () => {
+  const user = useSelector((state) => state.user);
   const [slots, setSlots] = React.useState([]);
   const [start, setStart] = React.useState("10-00");
   const [end, setEnd] = React.useState("17-00");
@@ -14,6 +16,10 @@ const DefaultSchedule = () => {
     { start: "09:00", end: "14:00" },
     { start: "14:00", end: "18:00" },
   ]);
+
+  const handleCreateSlots = () => {
+    createSlots(user.user);
+  };
 
   const result = [];
 
@@ -37,7 +43,14 @@ const DefaultSchedule = () => {
     return timeStops;
   }
 
-  const postSlots = async (id) => {
+  const createSlotsForFullWeekdays = () => {
+    for (let i = 0; i < week.length; i++) {
+      let timeStops = getTimeStops(week[i].start, week[i].end, "30");
+      result.push(timeStops);
+    }
+  };
+
+  const createSlots = async (id) => {
     let res = await fetch(`${process.env.REACT_API_URL}/doctors/${id}`, {
       method: "PUT",
       headers: {
@@ -51,13 +64,6 @@ const DefaultSchedule = () => {
 
     let data = await res.json();
     console.log(data);
-  };
-
-  const createSlots = () => {
-    for (let i = 0; i < week.length; i++) {
-      let timeStops = getTimeStops(week[i].start, week[i].end, "30");
-      result.push(timeStops);
-    }
   };
 
   return (
@@ -165,7 +171,12 @@ const DefaultSchedule = () => {
         </div>
       </div>
 
-      <button className="btn btn-primary schedule-create-btn">Create</button>
+      <button
+        className="btn btn-primary schedule-create-btn"
+        onClick={handleCreateSlots}
+      >
+        Create
+      </button>
     </div>
   );
 };
