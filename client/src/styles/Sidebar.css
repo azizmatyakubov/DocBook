@@ -116,6 +116,7 @@
 
 .sidebar-menu-item:hover, .sidebar-active {
     background-color: #8000FF;
+    /* background-color: #8338ec; */
     color: #fff;
     font-weight: 400;
 }

@@ -64,6 +64,7 @@
     padding: 0.4rem 0.7rem;
     border-radius: 8px;
     color: #FF6677;
+    cursor: pointer;
 }
 
 .appointments-list-btn:hover {
