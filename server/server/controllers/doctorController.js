@@ -47,8 +47,14 @@ export const loginDoctor = async (req, res, next) => {
         if (!doctor) return next(createHttpError(401, "Email or password is incorrect"));
 
 
-        const isMatch = await doctor.comparePassword(req.body.password);
-        if (!isMatch) return next(createHttpError(401, "Email or password is incorrect"))
+        // const isMatch = await doctor.comparePassword(req.body.password);
+        // if (!isMatch) return next(createHttpError(401, "Email or password is incorrect"))
+
+        console.log(doctor.password)
+        // check password
+        const isMatch = await bcrypt.compare(req.body.password, doctor.password);
+        if (!isMatch) return next(createHttpError(401, "Email or password is incorrect"));
+
 
         const token = doctor.generateToken();
         

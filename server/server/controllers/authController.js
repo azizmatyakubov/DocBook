@@ -1,138 +1,46 @@
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import {
-  loginValidator,
-} from "../validators/authValidator.js";
-import User from "../models/PatientModel.js";
-import Doctor from '../models/DoctorModel.js'
+import GoogleStrategy from 'passport-google-oauth20';
+import Doctor from '../models/DoctorModel.js';
+import { generateAccessToken } from '../lib/generateToken.js';
 
 
+// Doctor Google Strategy
+const googleStrategy = new GoogleStrategy(
+    {
+        clientID: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL: 'http://localhost:3001/auth/google/callback',
+        passReqToCallback: true,
+    },
+    
+    async (req, accessToken, refreshToken, profile, done) => {
+        try {
+            const doctor = {
+                googleId: profile.id,
+                name: profile.displayName,
+                surname: profile.name.familyName,
+                email: profile.emails[0].value,
+                password: profile.id,
+                role: 'doctor',
+                image: profile.photos[0].value,
+                country: profile._json.locale,
+            };
+         
+    
+            const existingDoctor = await Doctor.findOne({ email: doctor.email });
+            if (!existingDoctor) {
+                const newDoctor = new Doctor(user);
+                await newDoctor.save();
+                const accessToken = await generateAccessToken({ _id: newDoctor._id });
+                done(null, { newDoctor, accessToken });
+            } else { 
+                const accessToken = await generateAccessToken({ _id: existingDoctor._id });
+                done(null, { existingDoctor, accessToken });
+            }
 
-export const createUser = async (req, res) => {
-  // const { error } = registerValidator(req.body);
-
-  // if (error) {
-  //   return res.status(400).json({
-  //     status: "Fail",
-  //     message: error.details[0].message,
-  //   });
-  // }
-
-  let model = req.body.role === "doctor" ? Doctor : User;
-
-  try {
-    const existingUser = await model.findOne({ email: req.body.email });
-
-    if (existingUser) {
-      return res.status(400).json({
-        status: "Fail",
-        message: "User already exists",
-      });
+        } catch (error) {
+            console.log(error)
+        } 
     }
+);
 
-    const hashedPassword = await bcrypt.hash(req.body.password, 12);
-
-    const user = new User({
-      name: req.body.name,
-      surname: req.body.surname,
-      email: req.body.email,
-      phone: req.body.phone,
-      password: hashedPassword,
-      role: req.body.role,
-    });
-
-    const doctor = new Doctor({
-      name: req.body.name,
-      surname: req.body.surname,
-      email: req.body.email,
-      phone: req.body.phone,
-      password: hashedPassword,
-      role: req.body.role,
-      availability: req.body.availability,
-      experience: req.body.experience,
-      specialization: req.body.specialization,
-      country: req.body.country,
-    });
-
-    let savedUser = null;
-    if(req.body.role === "doctor") {
-      savedUser = await doctor.save();
-    } else {
-      savedUser = await user.save();
-    }
-
-  
-
-    res.status(201).json({
-      status: "Success",
-      message: "User created",
-      data: {
-        user: savedUser,
-      },
-    });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({
-      status: "Error",
-      message: error.message,
-    });
-  }
-};
-
-export const loginUser = async (req, res) => {
-  const { error } = loginValidator(req.body);
-
-
-  if (error) {
-    return res.status(400).json({
-      status: "Fail",
-      message: error.details[0].message,
-    });
-  }
-
-  try {
-
-    let user;
-
-    user = await User.findOne({ email: req.body.email });
-    if(!user) {
-      user = await Doctor.findOne({ email: req.body.email }).populate('appointments');
-    }  
-      
-  
-    if (!user) {
-      return res.status(400).json({
-        status: "Fail",
-        message: "Email or password is incorrect",
-      });
-    }
-
-    const isPasswordValid = await bcrypt.compare(
-      req.body.password,
-      user.password
-    );
-
-    if (!isPasswordValid) {
-      return res.status(400).json({
-        status: "Fail",
-        message: "Email or password is incorrect",
-      });
-    }
-
-    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "3d",
-    });
-
-    res.status(200).json({
-      id: user._id,
-      role: user.role,
-      token,
-    });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({
-      status: "Error",
-      message: error.message,
-    });
-  }
-};
+export default googleStrategy;

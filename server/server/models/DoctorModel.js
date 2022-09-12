@@ -35,17 +35,15 @@ const DoctorSchema = new Schema(
 
     specialization: {
       type: String,
-      required: true
     },
 
     experience: {
-      type: Number,
-      required: true
+      type: Number
     },
 
     availability: {
       type: [Array],
-      required: true
+      default: [],
     },
 
     appointmentRequests: {
@@ -70,8 +68,6 @@ const DoctorSchema = new Schema(
       },
     ],
 
-
-
     image: {
       type: String,
       default: "https://isobarscience.com/wp-content/uploads/2020/09/default-profile-picture1.jpg",
@@ -80,7 +76,11 @@ const DoctorSchema = new Schema(
     country: {
       type: String,
       required: true,
-    }
+    },
+
+    googleId: {
+      type: String,
+    },        
 
   },
   {
