@@ -13,9 +13,7 @@ import Dashboard from './pages/Dashboard';
 import Slots from './pages/Slots';
 import CalendarPage from './pages/CalendarPage';
 import Login from './pages/Login';
-// Components
 
-//import PatientDashboard from './components/PatientDashboard/PatientDashboard';
 import AppointmentsPage from './pages/AppointmentsPage';
 
 
@@ -23,7 +21,6 @@ function App() {
   return (
    <div className='app'>
     <Router>
-   
       <Routes>
         <Route path="/dashboard" element={ <Dashboard /> } />
         <Route path="/appointments" element={ <AppointmentsPage />} />
@@ -32,7 +29,7 @@ function App() {
         <Route path="/doctor/:id" element={ <DoctorProfilePage /> } />
         <Route path="/calendar" element={ <CalendarPage /> } />
         <Route path="/slots" element={ <Slots /> } />
-        {/* <Route path="/patient-dashboard" element={ <PatientDashboard /> } /> */}
+      
         <Route path="/login" element={ <Login /> } />
         <Route path="/" element={ <Home /> } />
       </Routes>

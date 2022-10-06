@@ -14,9 +14,7 @@ authRouter.get('/google', passport.authenticate('google', { scope: ['profile', '
 authRouter.get('/google/callback', passport.authenticate('google', {session: false}), (req, res) => {
     const accessToken = req.user.accessToken;
     try {
-        
-            res.redirect(`http://localhost:3000/dashboard?accessToken=${accessToken}`)
-        
+        res.redirect(`http://localhost:3000/dashboard?accessToken=${accessToken}`)
     } catch (error) {
         console.log(error);
     }
@@ -24,7 +22,8 @@ authRouter.get('/google/callback', passport.authenticate('google', {session: fal
 
 
 
-authRouter.post('/doctor/register', createDoctor);
+
+authRouter.post('/login', login)
 authRouter.post('/doctor/login', loginDoctor)
 
 

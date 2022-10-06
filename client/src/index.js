@@ -4,10 +4,10 @@ import './index.css';
 import App from './App';
 
 
-import { store } from './redux/store';
+import { store } from './store';
 import { Provider } from 'react-redux'
 
-// // persist 
+// persist 
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
 
@@ -18,6 +18,7 @@ root.render(
     <Provider store={store}>
     <PersistGate persistor={persistor}>
         <App />
-        </PersistGate>
-  </Provider>,
+         </PersistGate>
+   </Provider>,
+
 );

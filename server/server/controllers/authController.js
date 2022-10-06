@@ -4,7 +4,7 @@ import { generateAccessToken } from '../lib/generateToken.js';
 
 
 // Doctor Google Strategy
-const googleStrategy = new GoogleStrategy(
+export const googleStrategy = new GoogleStrategy(
     {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -43,4 +43,22 @@ const googleStrategy = new GoogleStrategy(
     }
 );
 
-export default googleStrategy;
+
+const login = async (req, res, next) => {
+    try {
+        let user;
+
+        // check password
+        const isMatch = await bcrypt.compare(req.body.password, doctor.password);
+
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+        
+
+
+
+
+

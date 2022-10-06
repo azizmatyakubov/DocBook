@@ -1,31 +1,14 @@
 /* Media Query for low resolution  Tablets, Ipads */
 @media (max-width: 481px) {
-    .login-image {
+    .login-cover {
         display: none;
     }
 }
       
-/* Media Query for Large screens */
-@media (min-width: 1024px) {
-
-
-}
-
-.login-wrapper {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-}
-
-.login-image {
+.login-cover {
     width: 50%;
     height: 100vh;
     background-image: url('https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg');
     background-size: cover;
 }
 
-.login-form {
-    margin: 0 auto;
-}

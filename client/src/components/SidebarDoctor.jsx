@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../features/user/userSlice";
 import "../styles/Sidebar.css";
-
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
 
 // icons
 import { IoMdExit } from "react-icons/io";
@@ -17,8 +15,8 @@ import SidebarItem from "./SidebarItem";
 
 const SidebarDoctor = () => {
   const [isActive, setIsActive] = useState("Dashboard");
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const makeActive = (text) => {
     setIsActive(text);
@@ -26,17 +24,9 @@ const SidebarDoctor = () => {
   };
 
   const logout = () => {
-    localStorage.removeItem("user");
-    // clear redux store
-    dispatch({ type: "LOGOUT" });
-    navigate("/login");
+    dispatch(logoutUser());
+    navigate("/");
   };
-
-  const renderTooltip = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
-      Simple tooltip
-    </Tooltip>
-  );
 
   return (
     <div className="sidebar-wrapper">
