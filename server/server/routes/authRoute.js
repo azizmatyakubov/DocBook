@@ -1,9 +1,6 @@
 import express from 'express';
-import { createPatient } from '../controllers/PatientController.js';
-import { loginPatient } from '../controllers/PatientController.js';
+import { registerDoctor, registerPatient, login } from '../controllers/authController.js';
 
-import { createDoctor } from '../controllers/doctorController.js';
-import { loginDoctor } from '../controllers/doctorController.js';
 import passport from 'passport';
 
 
@@ -20,14 +17,9 @@ authRouter.get('/google/callback', passport.authenticate('google', {session: fal
     }
 })
 
-
-
-
 authRouter.post('/login', login)
-authRouter.post('/doctor/login', loginDoctor)
+authRouter.post('/patient/register', registerPatient)
+authRouter.post('/doctor/register', registerDoctor)
 
-
-authRouter.post('/patient/register', createPatient)
-authRouter.post('/patient/login', loginPatient)
 
 export default authRouter

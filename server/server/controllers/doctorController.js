@@ -2,41 +2,9 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import createHttpError from "http-errors";
 import Doctor from "../models/DoctorModel.js";
-import { doctorRegisterValidator, loginValidator } from "../validators/authValidator.js";
 
-export const createDoctor = async (req, res, next) => {
-    const { error } = doctorRegisterValidator(req.body);
-    if (error) return next(createHttpError(400, error.details[0].message));
 
-    let doctor = await Doctor.findOne({ email: req.body.email });
-    if (doctor) return next(createHttpError(400, "Email already exists"));
 
-  
-    try {
-        const doctor = new Doctor({
-                name: req.body.name,
-                surname: req.body.surname,
-                email: req.body.email,
-                phone: req.body.phone,
-                password: req.body.password,
-                role: req.body.role,
-                availability: req.body.availability,
-                experience: req.body.experience,
-                specialization: req.body.specialization,
-                country: req.body.country,
-        });
-
-        const savedDoctor = await doctor.save();
-
-        res.status(201).json({
-            message: "Doctor created",
-            id: savedDoctor._id,
-        });
-    } catch (error) {
-        console.log(error)
-        next(error);
-    }
-}
 
 export const loginDoctor = async (req, res, next) => {
     const { error } = loginValidator(req.body);

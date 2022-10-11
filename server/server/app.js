@@ -17,7 +17,7 @@ import slotsRouter from "./routes/slotsRoute.js";
 import connect from './config/database.js';
 connect();
 
-import googleStrategy from "./controllers/authController.js";
+import { googleStrategy } from "./controllers/authController.js";
 
 
 // Declare app

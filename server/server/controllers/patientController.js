@@ -4,32 +4,6 @@ import { loginValidator, patientRegisterValidator } from "../validators/authVali
 
 
 
-export const createPatient = async (req, res, next) => {
-    const { error } = patientRegisterValidator(req.body);
-    if (error) return next(createHttpError(400, error.details[0].message));
-
-    const { name, surname, email, password } = req.body;
-    const patient = new Patient({
-        name,
-        surname,
-        email, 
-        password
-    });
-    
-    try {
-        const savedPatient = await patient.save();
-        res.status(201).json({
-            message: "Patient is created",
-            id: savedPatient._id
-        });
-    } catch (err) {
-        next(err);
-    }
-}
-
-
-
-
 export const loginPatient = async (req, res, next) => {
     const { error } = loginValidator(req.body);
     if (error) return next(createHttpError(400, error.details[0].message));
