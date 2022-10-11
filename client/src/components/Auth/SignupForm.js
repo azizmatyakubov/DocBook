@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 
-import { loginUser } from "../../features/user/userAction";
+import { registerUser } from "../../features/user/userAction";
 import Error from "../Alert/Error";
 import { Form, Button} from "react-bootstrap";
 
@@ -16,29 +16,26 @@ const SignupForm = () => {
     const { register, handleSubmit} = useForm();
     
     const submitForm = (data) => {
-        dispatch(loginUser(data))
-
-        if (success && role === 'doctor') {
-            navigate('/dashboard')
-        } else if (success && role === 'patient') {
-            navigate('/patient/dashboard')
-        }
+        dispatch(registerUser(data))
+        if(success === true) {
+            navigate('/login')
+        }        
     }
 
   return (
     <Form className="loginForm" onSubmit={handleSubmit(submitForm)}>
-    <h2>Login</h2>
-    <Form.Group className="mb-3" controlId="formBasicPassword">
+    <h2>Sign up</h2>
+    {error && <Error text={error.message} />}
+    <Form.Group className="mb-3" controlId="formBasicName">
       <Form.Label>Name</Form.Label>
       <Form.Control
-        type="password"
-        placeholder="Password"
-        {...register("password", { required: true })}
+        type="text"
+        placeholder="Name"
+        {...register("name", { required: true })}
       />
     </Form.Group>
 
     <Form.Group className="mb-3" controlId="formBasicEmail">
-    {error && <Error text={error.message} />}
       <Form.Label>Email address </Form.Label>
       <Form.Control
         type="email"

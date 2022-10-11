@@ -28,19 +28,21 @@ const userSlice = createSlice({
         [registerUser.pending]: (state, action) => {
             state.loading = true
             state.error = null
+            state.success = false
         },
         [registerUser.fulfilled]: (state, action) => {
             state.loading = false
-            state.userInfo = action.payload.data
-            state.succes = true
+            state.success = true
         },
         [registerUser.rejected]: (state, action) => {
             state.loading = false
             state.error = action.payload
+            state.success = false
         },
         [loginUser.pending]: (state, action) => {
             state.loading = true
             state.error = null
+            state.success = false
         },
         [loginUser.fulfilled]: (state, action) => {
             state.loading = false
