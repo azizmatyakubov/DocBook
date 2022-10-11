@@ -17,14 +17,13 @@ const LoginForm = () => {
     
     const submitForm = (data) => {
         dispatch(loginUser(data))
-        
+
         if (success && role === 'doctor') {
             navigate('/dashboard')
         } else if (success && role === 'patient') {
             navigate('/patient/dashboard')
         }
     }
-   
 
   return (
     <Form className="m-auto" onSubmit={handleSubmit(submitForm)}>
