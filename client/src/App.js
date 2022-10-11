@@ -12,7 +12,7 @@ import DoctorsPage from './pages/DoctorsPage';
 import Dashboard from './pages/Dashboard';
 import Slots from './pages/Slots';
 import CalendarPage from './pages/CalendarPage';
-import Login from './pages/Login';
+import Auth from './pages/Auth';
 
 import AppointmentsPage from './pages/AppointmentsPage';
 
@@ -29,8 +29,8 @@ function App() {
         <Route path="/doctor/:id" element={ <DoctorProfilePage /> } />
         <Route path="/calendar" element={ <CalendarPage /> } />
         <Route path="/slots" element={ <Slots /> } />
-      
-        <Route path="/login" element={ <Login /> } />
+        <Route path="/login" element={ <Auth /> } />
+        <Route path="/signup" element={ <Auth /> } />
         <Route path="/" element={ <Home /> } />
       </Routes>
     </Router>

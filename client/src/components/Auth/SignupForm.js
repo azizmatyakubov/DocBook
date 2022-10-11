@@ -7,7 +7,7 @@ import { loginUser } from "../../features/user/userAction";
 import Error from "../Alert/Error";
 import { Form, Button} from "react-bootstrap";
 
-const LoginForm = () => {
+const SignupForm = () => {
     const { loading, success, role, error } = useSelector(state => state.user)
  
     const navigate = useNavigate()
@@ -28,6 +28,15 @@ const LoginForm = () => {
   return (
     <Form className="loginForm" onSubmit={handleSubmit(submitForm)}>
     <h2>Login</h2>
+    <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Label>Name</Form.Label>
+      <Form.Control
+        type="password"
+        placeholder="Password"
+        {...register("password", { required: true })}
+      />
+    </Form.Group>
+
     <Form.Group className="mb-3" controlId="formBasicEmail">
     {error && <Error text={error.message} />}
       <Form.Label>Email address </Form.Label>
@@ -53,14 +62,13 @@ const LoginForm = () => {
       <Form.Check type="checkbox" label="Remember me" />
     </Form.Group>
     <Button variant="primary" type="submit" >
-      Login
+      Sign up
     </Button>
     <p className="mt-2">
-      Don't have an account? <Link to="/signup">Signup</Link>
+        Already have an account? <Link to="/login">Login</Link>
     </p>
-
   </Form>  
   )
 }
 
-export default LoginForm
+export default SignupForm
