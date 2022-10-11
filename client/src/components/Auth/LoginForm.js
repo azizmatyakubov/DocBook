@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import { loginUser } from "../../features/user/userAction";
 import Error from "../Alert/Error";
-import { Form, Button ,Spinner } from "react-bootstrap";
+import { Form, Button} from "react-bootstrap";
 
 const LoginForm = () => {
     const { loading, success, role, error } = useSelector(state => state.user)
@@ -26,7 +26,7 @@ const LoginForm = () => {
     }
 
   return (
-    <Form className="m-auto" onSubmit={handleSubmit(submitForm)}>
+    <Form className="loginForm" onSubmit={handleSubmit(submitForm)}>
     <h2>Login</h2>
     <Form.Group className="mb-3" controlId="formBasicEmail">
     {error && <Error text={error.message} />}
