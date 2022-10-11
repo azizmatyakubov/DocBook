@@ -9,10 +9,6 @@ const PatientSchema = new Schema(
         type: String,
         required: true
     },
-    surname: {
-        type: String,
-        required: true
-    },
     email: {
         type: String,
         required: true,
@@ -24,7 +20,6 @@ const PatientSchema = new Schema(
     },
     role: {
         type: String,
-        enum: ["admin", "doctor", "patient"],
         default: "patient",
     },
     appointments: {
@@ -42,10 +37,6 @@ const PatientSchema = new Schema(
     }
 )
 
-PatientSchema.pre('save', async function () {
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
-})
 
 // check if password is correct
 PatientSchema.methods.comparePassword = async function (password) {

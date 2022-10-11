@@ -4,7 +4,7 @@ import GoogleStrategy from 'passport-google-oauth20';
 import Doctor from '../models/DoctorModel.js';
 import Patient from '../models/PatientModel.js';
 import { generateAccessToken } from '../lib/generateToken.js';
-import { doctorRegisterValidator, loginValidator } from "../validators/authValidator.js";
+import { registerValidator, loginValidator } from "../validators/authValidator.js";
 
 // Doctor Google Strategy
 export const googleStrategy = new GoogleStrategy(
@@ -45,33 +45,31 @@ export const googleStrategy = new GoogleStrategy(
     }
 );
 
-export const registerDoctor = async (req, res, next) => {
-    const { error } = doctorRegisterValidator(req.body);
+export const register = async (req, res, next) => {
+    const { error } = registerValidator(req.body);
     if (error) return next(createHttpError(400, error.details[0].message));
 
-    let doctor = await Doctor.findOne({ email: req.body.email });
-    if (doctor) return next(createHttpError(400, "Email already exists"));
+    let user = await Doctor.findOne({ email: req.body.email });
+    if (user) return next(createHttpError(400, "Email already exists"));
+    
+    user = await Patient.findOne({ email: req.body.email });
+    if (user) return next(createHttpError(400, "Email already exists"));
 
-  
-    try {
-        const doctor = new Doctor({
-                name: req.body.name,
-                surname: req.body.surname,
-                email: req.body.email,
-                phone: req.body.phone,
-                password: req.body.password,
-                role: req.body.role,
-                availability: req.body.availability,
-                experience: req.body.experience,
-                specialization: req.body.specialization,
-                country: req.body.country,
-        });
+      try {
+        
+        if (req.url === '/register/doctor') {
+            user = new Doctor(req.body);
+        } else if (req.url === '/register/patient') {
+            user = new Patient(req.body);
+        }
 
-        const savedDoctor = await doctor.save();
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(user.password, salt);
+
+        const savedUser = await user.save();
 
         res.status(201).json({
-            message: "Doctor created",
-            id: savedDoctor._id,
+            id: savedUser._id,
         });
     } catch (error) {
         console.log(error)
@@ -82,7 +80,7 @@ export const registerDoctor = async (req, res, next) => {
 
 
 export const registerPatient = async (req, res, next) => {
-    const { error } = patientRegisterValidator(req.body);
+    const { error } = registerValidator(req.body);
     if (error) return next(createHttpError(400, error.details[0].message));
 
     const { name, surname, email, password } = req.body;
@@ -127,8 +125,6 @@ export const login = async (req, res, next) => {
             id: user._id,
             token: accessToken,
         })
-
-
     } catch (error) {
         console.log(error)
     }

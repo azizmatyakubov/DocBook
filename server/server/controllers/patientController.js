@@ -1,33 +1,7 @@
 import Patient from "../models/PatientModel.js";
 import createHttpError from "http-errors";
-import { loginValidator, patientRegisterValidator } from "../validators/authValidator.js";
+import { loginValidator} from "../validators/authValidator.js";
 
-
-
-export const loginPatient = async (req, res, next) => {
-    const { error } = loginValidator(req.body);
-    if (error) return next(createHttpError(400, error.details[0].message));
-    
-    const { email, password } = req.body;
-
-    try {
-        let patient = await Patient.findOne({ email });
-        if (!patient) return next(createHttpError(401, "Invalid email or password"));
-        
-        const isMatch = await patient.comparePassword(password);
-        if(!isMatch)  return next(createHttpError(401, "Invalid email or password"));
-             
-        const token = patient.generateToken();
-
-        res.status(200).json({
-            message: "Patient logged in",
-            token
-        });
-    } catch (err) {
-        next(err);
-    }
-     
-}
 
 export const getAllPatients = async (req, res, next) => {
         try {

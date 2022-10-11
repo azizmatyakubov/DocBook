@@ -11,7 +11,7 @@ const DoctorSchema = new Schema(
     },
     surname: {
       type: String,
-      required: true,
+      default: "",
     },
     email: {
       type: String,
@@ -29,16 +29,17 @@ const DoctorSchema = new Schema(
 
     role: {
       type: String,
-      enum: ["admin", "doctor", "patient"],
-      default: "patient",
+      default: "doctor",
     },
 
     specialization: {
       type: String,
+      default: null,
     },
 
     experience: {
-      type: Number
+      type: Number,
+      default: null,
     },
 
     availability: {
@@ -75,11 +76,12 @@ const DoctorSchema = new Schema(
     },
     country: {
       type: String,
-      required: true,
+      default: "",
     },
 
     googleId: {
       type: String,
+      default: null,
     },        
 
   },
@@ -98,11 +100,6 @@ DoctorSchema.statics.generateToken = function (user) {
   return token;
 }
 
-
-DoctorSchema.pre("save", async function () {
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
-})
 
 
 DoctorSchema.methods.comparePassword = async function (password) {

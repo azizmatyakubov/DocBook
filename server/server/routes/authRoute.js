@@ -1,5 +1,5 @@
 import express from 'express';
-import { registerDoctor, registerPatient, login } from '../controllers/authController.js';
+import { register, registerPatient, login } from '../controllers/authController.js';
 
 import passport from 'passport';
 
@@ -18,8 +18,8 @@ authRouter.get('/google/callback', passport.authenticate('google', {session: fal
 })
 
 authRouter.post('/login', login)
-authRouter.post('/patient/register', registerPatient)
-authRouter.post('/doctor/register', registerDoctor)
+authRouter.post('/register/patient', register)
+authRouter.post('/register/doctor', register)
 
 
 export default authRouter
