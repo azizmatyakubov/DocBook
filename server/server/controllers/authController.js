@@ -1,6 +1,8 @@
 import createHttpError from "http-errors";
+import bcrypt from "bcrypt";
 import GoogleStrategy from 'passport-google-oauth20';
 import Doctor from '../models/DoctorModel.js';
+import Patient from '../models/PatientModel.js';
 import { generateAccessToken } from '../lib/generateToken.js';
 import { doctorRegisterValidator, loginValidator } from "../validators/authValidator.js";
 
@@ -106,11 +108,25 @@ export const registerPatient = async (req, res, next) => {
 
 
 export const login = async (req, res, next) => {
-    try {
-        let user;
+    const { error } = loginValidator(req.body);
+    if (error) return next(createHttpError(400, error.details[0].message));
 
-        // check password
-        const isMatch = await bcrypt.compare(req.body.password, doctor.password);
+    const { email, password } = req.body;
+    let user; 
+    try {
+        let user = await Doctor.findOne({ email });
+        if (!user) {
+            user = await Patient.findOne({ email });
+            if (!user) return next(createHttpError(400, "Email or password is wrong"));
+        }
+        const validPassword = await bcrypt.compare(password, user.password);
+        if (!validPassword) return next(createHttpError(401, "Email or password is wrong"));
+
+        const accessToken = await generateAccessToken({ _id: user._id });
+        res.status(200).json({
+            id: user._id,
+            token: accessToken,
+        })
 
 
     } catch (error) {
