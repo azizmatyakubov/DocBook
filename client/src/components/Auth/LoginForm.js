@@ -8,7 +8,7 @@ import Error from "../Alert/Error";
 import { Form, Button ,Spinner } from "react-bootstrap";
 
 const LoginForm = () => {
-    const { loading, success, role, error }= useSelector(state => state.user)
+    const { loading, success, role, error } = useSelector(state => state.user)
  
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -16,8 +16,13 @@ const LoginForm = () => {
     const { register, handleSubmit} = useForm();
     
     const submitForm = (data) => {
-      dispatch(loginUser(data))
-      if(success) navigate(`/dashboard`)
+        dispatch(loginUser(data))
+        
+        if (success && role === 'doctor') {
+            navigate('/dashboard')
+        } else if (success && role === 'patient') {
+            navigate('/patient/dashboard')
+        }
     }
    
 

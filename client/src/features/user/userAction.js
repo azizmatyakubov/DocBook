@@ -19,7 +19,7 @@ export const registerUser = createAsyncThunk(
 )
 
 export const loginUser = createAsyncThunk(
-    'user/loginUser', async ({email, password}, {rejectWithValue}) => {
+    'user/login', async ({email, password}, {rejectWithValue}) => {
         try {
             const config = {
                 headers: {
@@ -27,7 +27,7 @@ export const loginUser = createAsyncThunk(
                 }
             }
 
-            const {data} = await axios.post('/doctors/login', {email, password}, config)
+            const {data} = await axios.post('/auth/login', {email, password}, config)
             return data
             
         } catch (error) {
