@@ -15,7 +15,7 @@ export default function Dashboard() {
 
   const getAppointmentsByDoctor = async () => {
     try {
-      let res = await fetch(`${process.env.REACT_APP_API_URL}/appointments/doctor/${user.user}`, {
+      let res = await fetch(`${process.env.REACT_APP_API_URL}/appointments/doctor/${user.id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -35,9 +35,7 @@ export default function Dashboard() {
         (appointment) => appointment.status === "pending"
       )
       setAppointmentRequests(pendingAppointments)
-      } else {
-        console.log("response error");
-      }  
+      }
     } catch (error) {
       console.log(error)
     }

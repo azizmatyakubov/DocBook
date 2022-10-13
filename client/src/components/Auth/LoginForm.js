@@ -8,7 +8,7 @@ import Error from "../Alert/Error";
 import { Form, Button} from "react-bootstrap";
 
 const LoginForm = () => {
-    const { loading, success, role, error } = useSelector(state => state.user)
+    const { success, role, error } = useSelector(state => state.user)
  
     const navigate = useNavigate()
     const dispatch = useDispatch()

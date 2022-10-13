@@ -3,6 +3,7 @@ import { registerUser, loginUser } from "./userAction";
 
 
 const initialState = {
+    id: null,
     token : null,
     role: null,
     loading: false,
@@ -15,7 +16,7 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         logoutUser: (state) => {
-            state.user = null
+            state.id = null
             state.token = null
             state.role = null
             state.loading = false
@@ -46,6 +47,7 @@ const userSlice = createSlice({
         },
         [loginUser.fulfilled]: (state, action) => {
             state.loading = false
+            state.id = action.payload.id
             state.role = action.payload.role
             state.token = action.payload.token
             state.success = true

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../features/user/userSlice";
 import "../styles/Sidebar.css";
 
@@ -12,9 +12,12 @@ import { faUserMd } from "@fortawesome/free-solid-svg-icons";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 import SidebarItem from "./SidebarItem";
+import { useEffect } from "react";
+import useFetch from "../hooks/useFetch";
 
 const SidebarDoctor = () => {
   const [isActive, setIsActive] = useState("Dashboard");
+  const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -27,6 +30,10 @@ const SidebarDoctor = () => {
     dispatch(logoutUser());
     navigate("/");
   };
+
+  useEffect(() => {
+    // const { response, error, loading } = useFetch(user.id);
+  }, [third]);
 
   return (
     <div className="sidebar-wrapper">
