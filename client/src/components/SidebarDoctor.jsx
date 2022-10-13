@@ -17,6 +17,7 @@ import useFetch from "../hooks/useFetch";
 
 const SidebarDoctor = () => {
   const [isActive, setIsActive] = useState("Dashboard");
+  const [doctor, setDoctor] = useState({});
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -31,9 +32,20 @@ const SidebarDoctor = () => {
     navigate("/");
   };
 
+  const getDoctor = () => {
+    const { data, error } = useFetch(
+      `http://localhost:5000/api/doctor/${user._id}`,
+      "GET"
+    );
+    if (data) {
+      setDoctor(data);
+    }
+  };
+
   useEffect(() => {
-    // const { response, error, loading } = useFetch(user.id);
-  }, [third]);
+    setDoctor(response.doctor);
+    console.log(doctor);
+  }, []);
 
   return (
     <div className="sidebar-wrapper">
@@ -45,7 +57,7 @@ const SidebarDoctor = () => {
             alt="sidebar"
           />
         </div>
-        <h1 className="sidebar-header-text">TOM HOLLAND</h1>
+        <h1 className="sidebar-header-text">{doctor && doctor.name}</h1>
       </div>
 
       <nav className="sidebar-menu">
